@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore complex arithmetic, rotations, conjugation, integer powers and all nth roots on an interactive Argand diagram."
+    />
+    <title>Complex Plane Studio · piAlbertSHI</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav aria-label="Project">
+        <a href="https://github.com/piAlbertSHI">piAlbertSHI</a><span>/</span><span>Complex arithmetic</span
+        ><a href="https://github.com/piAlbertSHI/Complex-Plane-Studio">Repository ↗</a>
+      </nav>
+      <header>
+        <h1>Complex Plane Studio</h1>
+        <p>
+          See multiplication rotate a vector, conjugation reflect it, and roots divide a circle.
+          Click the plane to place <i>z</i>, or enter its coordinates.
+        </p>
+      </header>
+      <main>
+        <div class="lab">
+          <section class="figure" aria-labelledby="plane-title">
+            <div class="figure-head">
+              <h2 id="plane-title">Argand diagram</h2>
+              <div class="legend">
+                <span class="key" style="--swatch: #77d8d5">z</span
+                ><span id="legend-w" class="key" style="--swatch: #f7c674">w</span
+                ><span class="key" style="--swatch: #c8a9ff">Result</span>
+              </div>
+            </div>
+            <canvas
+              id="plot"
+              role="img"
+              aria-label="Complex plane with real and imaginary axes; exact numerical coordinates are in the results table."
+            ></canvas>
+            <dl class="metrics" id="readout">
+              <div>
+                <dt id="result-title">Result</dt>
+                <dd id="result">—</dd>
+              </div>
+              <div>
+                <dt id="mag-title">Magnitude</dt>
+                <dd id="magnitude">—</dd>
+              </div>
+              <div>
+                <dt id="angle-title">Argument</dt>
+                <dd id="angle">—</dd>
+              </div>
+            </dl>
+          </section>
+          <aside>
+            <h2>Operation</h2>
+            <label for="op">Transformation</label
+            ><select id="op">
+              <option value="multiply">Multiply · z × w</option>
+              <option value="divide">Divide · z / w</option>
+              <option value="add">Add · z + w</option>
+              <option value="subtract">Subtract · z − w</option>
+              <option value="conjugate">Conjugate · z̄</option>
+              <option value="power">Integer power · zⁿ</option>
+              <option value="roots">All n-th roots</option>
+            </select>
+            <fieldset class="coord">
+              <legend>Input z</legend>
+              <div class="pair">
+                <label
+                  >Real<input
+                    id="zr"
+                    type="number"
+                    value="2"
+                    min="-12"
+                    max="12"
+                    step="any" /></label
+                ><label
+                  >Imaginary<input id="zi" type="number" value="1" min="-12" max="12" step="any"
+                /></label>
+              </div>
+            </fieldset>
+            <fieldset class="coord" id="w-group">
+              <legend>Operand w</legend>
+              <div class="pair">
+                <label
+                  >Real<input
+                    id="wr"
+                    type="number"
+                    value="0"
+                    min="-12"
+                    max="12"
+                    step="any" /></label
+                ><label
+                  >Imaginary<input id="wi" type="number" value="1" min="-12" max="12" step="any"
+                /></label>
+              </div>
+            </fieldset>
+            <div id="degree-group" hidden>
+              <label for="degree" id="degree-label">Degree n</label
+              ><input id="degree" type="number" min="1" max="12" step="1" value="5" />
+            </div>
+            <p class="notice" id="notice" role="status" hidden></p>
+            <p class="field-title">Try a case</p>
+            <div class="presets">
+              <button type="button" data-case="turn">Quarter turn</button
+              ><button type="button" data-case="unity">Roots of unity</button
+              ><button type="button" data-case="mirror">Reflection</button>
+            </div>
+          </aside>
+        </div>
+        <section class="sub">
+          <div>
+            <h2 id="interpret-title">Multiplication</h2>
+            <p id="interpret"></p>
+          </div>
+          <div>
+            <table aria-label="Operation results">
+              <thead>
+                <tr>
+                  <th>Value</th>
+                  <th>Real</th>
+                  <th>Imaginary</th>
+                  <th>Modulus</th>
+                  <th>Arg (°)</th>
+                </tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <span>Coursework revisited · C++17 value type</span
+        ><a href="https://github.com/piAlbertSHI/Complex-Plane-Studio#library-and-conventions"
+          >Library and conventions ↗</a
+        >
+      </footer>
+    </div>
+    <script type="module" src="studio.mjs"></script>
+  </body>
+</html>
