@@ -16,7 +16,7 @@ const names = {
   ],
   add: [
     'Addition',
-    'Translate the vector w to the tip of z. The resultant ends at the opposite corner of the parallelogram.',
+    'The sum is the diagonal of the parallelogram spanned by z and w, drawn from their common origin.',
   ],
   subtract: [
     'Subtraction',
@@ -28,10 +28,10 @@ const names = {
   ],
   power: [
     'Integer powers',
-    'An integer power multiplies the argument by n and raises the magnitude to n. Negative powers also take the reciprocal.',
+    'For nonzero z, the modulus of zⁿ is |z|ⁿ and its argument is n times the argument of z, modulo 360°.',
   ],
   roots: [
-    'Roots on a circle',
+    'Distribution of roots',
     'Nonzero roots have equal magnitude and are spaced by 360°/n. Raising any displayed root to n returns the input. Zero occurs with multiplicity n when the input is zero.',
   ],
 };
@@ -200,7 +200,7 @@ function render() {
     const results = evaluate(op, z, w, deg.valueAsNumber);
     if (results.some((p) => p.some((v) => !Number.isFinite(v) || Math.abs(v) > 1e100)))
       throw new Error(
-        'The result exceeds the plot range of 10¹⁰⁰. Try a smaller exponent or a larger divisor.',
+        'The result is outside the finite plotting range (±10¹⁰⁰ per coordinate).',
       );
     draw(z, w, results, op);
     $('result').textContent = cartesian(results[0]);
